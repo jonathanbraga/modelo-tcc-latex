@@ -1,181 +1,33 @@
 \chapter[Embasamento Teórico]{Embasamento Teórico}
 \label{ch:cap2}
-\section[\textit{Contextualizacao}]{\textit{Contextualização}}\label{context}
-O Consumo de energia elétrica é um dos principais indicadores de desenvolvimento e de qualidade de vida 
-de um país. Esse índice é tão importate que reflete diretamente no rítimo de vida de uma populção, pois mostra
-se as atividades industriais de uma nação está ou não em um bom rítimo e pode detectar se o comércio está em alta,
-devido aos bens e serviços que o povo adiquiriu. Porém um crescimento desordenado na população e um crescimento
-exponencial no consumo de enérgia pode acarretar em problemas para um determinado país.
-Analisando os dados \cite{epe-balanco-final}, o consumo de energia
-elétrica no Brasil vem crescendo ao longo dos anos, o brasileiro vem consumindo mais energia elétrica, nos últimos
-35 anos teve um crescimento médio de 6,72\% dessa demanda, após a crise que o Brasil sofreu entre os anos 2002 e 2005 houve um crescimento
-de 4,91\% na demanda energética do país. A \autoref{fig:consumo_energia_total} nos mostra bem o cenário de crise energética que o Brasil vinha
-passando ao longo dos anos, até 2008 o país consumia mais do que produzia.
+O \textit{Power Monitor} surgiu da necessidade da conscientização do gasto energético e da melhor compreensão da conta de luz. Baseado nesse conceito,
+foram desenvolvido um \textit{software} que permitirá uma fácil comunicação com qualquer equipamento construido que tenha a finalizade de monitorar a energia elétrica.
+O sistema traz uma forma mais fácil e próxima do consumidor final de se quantificar a energia elétrica consumido em um estabelecimento. No lugar do Quilowatt-hora, medida que é usada atualmente,
+o \textit{software} propõe mensurar o gasto energético em reais (R\$), trazendo a realidade do consumo mensal para mais próximo de cada brasileiro.
 
-\begin{figure}[h!]
-	\includegraphics[width=0.85\textwidth, keepaspectratio=true]{consumo_energia_total}
-	\centering
-	\caption[Estrutura do Consumo de fontes primárias]{Estrutura do Consumo de fontes primárias}
-	\fonte{\cite[p. 43]{epe-balanco-final}.}
-	\label{fig:consumo_energia_total}
-\end{figure}
-\FloatBarrier
+Esse capítulo trará os conceitos essenciais para o entendimento do trabalho, descrevendo todas as tecnologias utilizadas no desenvolvimento 
+do \textit{software} como do \textit{hardware}.
 
-O governo brasileiro tomou algumas medidas estratégicas para poder acompanhar a crescente demanda por energia elétrica, constituiu o planejamento
-da construção de mais de 80 usinas até 2020, hidroelétricas, temoelétricas e até usina nuclear. Um grande problema desse planjamento que o gorverno
-fez são os inumeros impactos ambientais e econômicos, um exemplo prático é a usina de de Belo Monte - Rio Xingu, Pará - obra que foi planejada
-para ser a quarta maior hidroelétrica do mundo, a maior do Brasil, com capacidade habastecer 40\% das recidências, foi orçada em R\$ 30 bilhões
-deveria ter seu início de operação no segundo semestre de 2015 mas até os dias atuais não entrou em funcionamento. Vale salientar que a construção
-trouxe o desmatamento de áreas indígenas, alagamentos permanentes, comprometimento da fauna e flora e aumento da dificuldade dos transportes fluviais
-de comunidades ribeirinhas.
+\section[\textit{Ferramentas e Linguagem}]{\textit{Ferramentas e Linguagem}}\label{ferramenta-linguagem}
+No decorrer do desenvolvimento do \textit{software} fez-se uso de algumas tecnologias e linguagens de programação que serão descrita no decorrer
+dessa seção.
+\subsection[\textit{Node.js}]{\textit{Node.js}}\label{node}
+Node.js é um interpretador do código JavaScript (\autoref{js}), com o foco do uso da linguagem do lado do cliente para servidores. Com um objetivo simples
+que é ajudar desenvolvedores na criação de aplicações de alta escalabilidade, com códigos capazes de administrar e manipulazar várias conexões simultaneamente
+em um único servidor. O \textit{Node.js} é baseado na \textit{runtime} V8 \textit{JavaScript Engine}. Foi desenvolvido por Ryan Danhl em 2009, e o seu desenvolvimento
+é mantido pela fundação \textit{Node.js} e \textit{Linux Foundation}. 
+\subsection[\textit{JavaScript}]{\textit{JavaScript}}\label{js}
+\subsection[\textit{WebSocket}]{\textit{WebSocket}}\label{websocket}
+\subsection[\textit{SQL}]{\textit{SQL}}\label{sql}
 
-Analisando a grande demanda energetica que o brasileiro vem requerindo e levando em conta as consquências negativas do planejamento das 80 usinas,
-surgi uma questão bastante recorrente: - "O que fazer? Constuir usinas mesmo sabendo dos impactos negativos que podem surgir, ou não construí-las e
-aumentar a tarifação pelo consumo de energia visando diminuir o consumo?" - A resposta para essas e outras questões que podem aparecer não são fáceis.
-Entretanto o governo brasileiro optou por deixar o consumo de energia elétrica mais caro, principalmente nos horários de pico. A evolução da tarifa,
-pode ser observada na \autoref{evolucao-tarifa}
+\section[\textit{Componentes Físicos}]{\textit{Componentes Físicos}}\label{comp-fisico}
+\subsection[\textit{ESP8266}]{\textit{ESP8266}}\label{esp}
 
-
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{lcccc}
-	\hline
-	\textbf{Ano} & \multicolumn{1}{l}{\textbf{1º Trimestre}} & \multicolumn{1}{l}{\textbf{2º Trimestre}} & \multicolumn{1}{l}{\textbf{3º Trimestre}} & \multicolumn{1}{l}{\textbf{4º Trimestre}} \\ \hline
-	\rowcolor[HTML]{DDDDDD} 
-	2013         & 120,8                                     & 117,1                                     & 114,5                                     & 116,1                                     \\
-	2014         & 121,1                                     & 127,6                                     & 134,4                                     & 141,9                                     \\
-	\rowcolor[HTML]{DDDDDD} 
-	2015         & 154,2                                     & -                                         & -                                         & -                                        
-	\end{tabular}
-	\caption{Evoluçao dos custos de energia elétrica em R\$/MWh}
-	\fonte{\cite[p. 1]{evolucao-tarifa-ref}}
-	\label{evolucao-tarifa}
-\end{table}
-
-Uma medida totalmente cabível que ainda é desconhecida por alguns brasileiros é a chamada "\textit{exposição da informação}", deixando sempre bem claro 
-quanto o consumidor tem gastado ou consumindo ao longo do mês em sua recidência, isso é possível graças a equipamentos que estão sempre monitorando
-a rede elétrica.Segundo uma pesquisa realizada pela Associação Brasileira das Empresas de Serviços de Conservação de Energia, seis anos o Brasil 
-desperdiçou o equivalente a 250GWh em energia o que equivale a R\$62 bilhões, desperdíciu que se deu justamente a tamanha falta de infomação que 
-o consumidor tem, se ao saber o quanto tem consumido ou gastado em tempo real o consumidor poderia se prevenir dos desperdícios. 
-
-\subsection[\textit{Setor Energético Brasileiro}]{\textit{Setor Energético Brasileiro}}\label{seb}
-Ao passar dos anos o Brasil vem mostrando cada vez mais o seu potencial na produão de energia, o território brasileiro possibilita as várias formas
-de obtenção da eletricidade. Analisando os dados \cite[p.29]{epe-anuario-2015} e comparando com a \autoref{cap_ele} nota-se que o Brasil subiu duas
-posoções no \textit{Rank} de geração de energia elétrica, isso é reflexo do aumentou da capicidade de produção de energia que chegou na marca de 8,39\%.
-
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{lccccc}
-		\rowcolor[HTML]{9B9B9B} 
-		\multicolumn{1}{c}{\cellcolor[HTML]{9B9B9B}} & {\color[HTML]{FFFFFF} \textbf{2010}} & {\color[HTML]{FFFFFF} \textbf{2011}} & {\color[HTML]{FFFFFF} \textbf{2012}} & {\color[HTML]{FFFFFF} \textbf{2013}} & \multicolumn{1}{l}{\cellcolor[HTML]{9B9B9B}{\color[HTML]{FFFFFF} \textbf{2014}}} \\ \hline
-		\textbf{Mundo}                               & \multicolumn{1}{l}{\textbf{5080,6}}  & \multicolumn{1}{l}{\textbf{5305,0}}  & \multicolumn{1}{l}{\textbf{5514,6}}  & \multicolumn{1}{l}{\textbf{5736,2}}  & \multicolumn{1}{l}{\textbf{6038,7}}                                              \\ \hline
-		\rowcolor[HTML]{DDDDDD} 
-		China                                        & 971,8                                & 1069,5                               & 1154,6                               & 1267,7                               & 1399,5                                                                           \\
-		Estados Unidos                               & 1039,1                               & 1051,3                               & 1063,0                               & 1060,1                               & 1074,6                                                                           \\
-		\rowcolor[HTML]{DDDDDD} 
-		Japão                                        & 284,9                                & 287,3                                & 293,3                                & 300,8                                & 313,4                                                                            \\
-		Índia                                        & 213,1                                & 246,0                                & 260,3                                & 283,0                                & 310,8                                                                            \\
-		\rowcolor[HTML]{DDDDDD} 
-		Rússia                                       & 228,1                                & 231,6                                & 233,6                                & 235,2                                & 247,6                                                                            \\
-		Alemanha                                     & 162,7                                & 167,5                                & 177,3                                & 186,1                                & 198,4                                                                            \\
-		\rowcolor[HTML]{DDDDDD} 
-		Canadá                                       & 132,3                                & 132,9                                & 130,7                                & 133,3                                & 136,8                                                                            \\
-		Brasil                                       & 11,3                                 & 117,1                                & 121,0                                & 126,7                                & 133,9                                                                           
-	\end{tabular}
-	\caption{Capacidade instalada de geração elétrica no mundo, 2014 (GW)}
-	\fonte{\cite[p. 29]{epe-anuario}}
-	\label{cap_ele}
-\end{table}
-
-A maior produção de energia do Brasil provem das hidroelétricas, o país é referência mundial quando o assunto é obtenção de energia através de
-usinas hidroelétricas - \autoref{cap_hidro} - isso é possível devido a sua alta concentração de rios de grande porte e ao grande volume de chuva
-que alimenta e reforça o poderio hídrico do país. A energia que a usina hidroelétrica fornece é conseguida através da energia hidráulica que provém
-do aproveitamento da força potencial e cinética das correntes de água,rio, mar. A água ao passar por tubulações com muita força e velociadade 
-movimentas as turbinas fazendo com que elas girem em um velociadade suficiente para que os geradores acoplados nas turbinas, transformem energia
-mecânica em energia elétrica, lembrando que a eficiência energética de uma usina hidroelétrica é de 65,2\%. Após esse longo processo a energia 
-extraída é enviada para estações de tratamento e após essa etapa é enviada para a matriz energetica que fará a distribuião da energia extraída. 
-
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{lccccl}
-		\rowcolor[HTML]{9B9B9B} 
-		\multicolumn{1}{c}{\cellcolor[HTML]{9B9B9B}} & {\color[HTML]{FFFFFF} \textbf{2010}} & {\color[HTML]{FFFFFF} \textbf{2011}} & {\color[HTML]{FFFFFF} \textbf{2012}} & {\color[HTML]{FFFFFF} \textbf{2013}} & {\color[HTML]{FFFFFF} \textbf{2014}} \\ \hline
-		\textbf{Mundo}                               & \multicolumn{1}{l}{\textbf{903,9}}   & \multicolumn{1}{l}{\textbf{929,9}}   & \multicolumn{1}{l}{\textbf{957,5}}   & \multicolumn{1}{l}{\textbf{1000,4}}  & \textbf{1038,3}                      \\ \hline
-		\rowcolor[HTML]{DDDDDD} 
-		China                                        & 199,5                                & 214,6                                & 229,1                                & 258,9                                & 283,0                                \\
-		Brasil                                       & 80,7                                 & 82,5                                 & 84,3                                 & 86,0                                 & 89,2                                 \\
-		\rowcolor[HTML]{DDDDDD} 
-		Estados Unidos                               & 78,8                                 & 78,7                                 & 78,7                                 & 79,2                                 & 79,7                                 \\
-		Canadá                                       & \multicolumn{1}{l}{74,9}             & \multicolumn{1}{l}{75,4}             & \multicolumn{1}{l}{75,4}             & \multicolumn{1}{l}{75,4}             & 75,4                                
-	\end{tabular}
-	\caption{Capacidade instalada de geração hidrelétrica no mundo, 2014 (GW)}
-	\fonte{\cite[p. 30]{epe-anuario}}
-	\label{cap_hidro}
-\end{table}
-
-É do conhecimento de qualquer brasileiro que possua uma noção básica de geografia que a região norte é a região que possui a maior quantidade de rios,
-essa noção pode levar uma conclusão errada - A região norte é a que mais produz energia - pois nem todo rio tem potencial para que uma hidroelétrica se instale.
-Por sua vez as regiões sul e suldeste são as que mais necessitam de energia, devido a densidade populacional e a quantidade de insdutrias instaladas nas regiões.
-A \autoref{pxcxge} externa essa problemática de uma manéira bem visível. Perceb-se que por exemplo a região sudeste é a que produz mais energia, porém é a que mais
-gasta, sendo os gastos maiores do que os ganhos, já a região norte e nordeste são regiões que produzem mais do que gastam. Vendo esse total desequilíbrio
-de geração e consumo de energia, surgiu a necessidade da criação do Sistema Interligado Nacional (SIN). O SIN é constituido por todas as regiões brasileiras
-e é interconectado por meio de uma malha de trasmissão que propicia a transferência de energia entres os subsistemas, permitindo a obtenção de ganhos
-sinérgicos e explora a diversidade entre os regimes hidrológicos e das bacias. A integração dos recursos de geração e transmissão permite o atendimento ao
-mercado com segurança e economicidade.
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{cccc}
-		\hline
-	\textbf{Região} & \textbf{População} & \textbf{Consumo em GW} & \textbf{\begin{tabular}[c]{@{}c@{}}Capacidade Instalada de \\ Geração Elétrica GW\end{tabular}} \\ \hline
-		\rowcolor[HTML]{DDDDDD} 
-		Norte           & 17.707.783         & 12.197                 & 25,484                                                                                          \\
-		Nordeste        & 56.915.936         & 12.109                 & 29,803                                                                                          \\
-		\rowcolor[HTML]{DDDDDD} 
-		Sudeste         & 86.356.952         & 74.584                 & 44,810                                                                                          \\
-		Sul             & 29.439.773         & 19.173                 & 31,681                                                                                          \\
-		\rowcolor[HTML]{DDDDDD} 
-		Centro-Oeste    & 15.660.988         & 5.634                  & 18,558                                                                                         
-	\end{tabular}
-	\caption{Relação População x Consumo por Região x Geração Elétrica por Região}
-	\fonte{(IBGE e EPE)}
-	\label{pxcxge}
-\end{table}
-
-
-\subsection[\textit{Medição de Energia}]{\textit{Medição de Energia}}\label{med-energia}
-
-Após enterder todo o funcionamento da geração e distribuição de energia no Brasil, é conveniente entender o processo de leitura do consumo de 
-energia elétrica, assim como as questões que esse trabalho faz a respeito da eficácia. Tendo a possibilidade de atualizar esse sistema com novas 
-tecnologias que proporcinam maior segurança e menores custos ao consumidor.
-
-Os primeiros medidores de eletricidade foram utilizados na operação de lâmpadas em série, um vez que a tensão era constante, a corrente exigida
-por cada lâmpada era conhecida e todas estavam ligadas no mesmo interruptor, os medidores foram suficientes apenas para medir o gasto das lâmpadas
-em um tempo determinado, surgindo o termo - lâmpada-hora. Em 1872 o pesquisador Samuel Gardiner trouxe a toda a primeira patente sobre um contator 
-de energia, que era formado por uma lâmpada acoplada a um contador de energia DC controlado por um relógio e um eletroímã, ao passar do tempo várias
-outras patentes foram surgindo e tentando melhor o projeto de Samuel Gardiner, mas foi apenas em 1892 que que surgiu o primeiro medidor de watt-hora
-com precisão e confiabilidade suficiente para aplicação em medição de consumo de energia. Criado por Thomas Duncan, inicialmente seu objetivo era a medição
-de circuitos monofásicos, porém com o bom desempenho do aprelho modificações foram feitas para à medição de circuitos polifásicos de energia.
-
-Atualmente a energia elétrica é quantificada através de um equipamento chamado medidor, que nos dias atuais a medição é feita em quilowatt-hora.
-Os medidores da atualidade são caracterizados por padrões da norma NBR 14519, o grupo de medidor mais utilizado pelas concessionárias nas residências
-é o grupo B. 
-
-\begin{itemize}
-	\item Grupo B \\
-	É caracterizado por unidades consumidoras de baixa tensão, com tensões inferiores a 2,3KV. As unidades consumidores podem ser classificadas
-	mediante a necessidade da concessionária responsável, geralmente o tipo B1 é residencial, tipo B2 são as residências rurais e estabelecimentos
-	comerciais ou insdustriais são classificados como o tipo B3.
-\end{itemize}
-
-Estima-se que 92\% dos medidores em funcionamento são eletromecânicos, pois são de baixa custo e de boa qualidade, com o erro máximo de 2\% de seu valor
-nominal de operação. Não ter um medidor em uma unidade consumidora pode gerar transtornos tanto para concessionário, pois não saberá o quanto deve cobrar ao 
-consumidor, como para o dono do estabelecimento, pois não terá o aporte devido prestado pela concessionária de energia.
-
-\subsection[\textit{Automação}]{\textit{Automação}}\label{automacao}
-Mesmo com a grande evolução que os medidores eletromecânicos sofreram ao longo do tempo, os dispositivos ainda apresentam pontos frágeis, dando uma 
-grande margem ao erro. A grande quantidade de peças mecânicas presente no medidor, faz com que o mesmo possua algumas limitações: interferência na
-opreção na presença de corrente continua que causam deformações no fluxo magnético do leitor; diminuição da precisão quando são tratados de valores
-muito baixos. Hoje em dia existe uma forte tendência a substitução desses medidores eletromeânicos por medidores eletrônicos, irá possibilitar além de uma
-melhor precisão uma maior e melhor medição e até possibilitando uma leitura remota. Hoje no Brasil existe um projejto de lei (PL 2932/20015) que prevê
-a substitução de medidores de consumo de energia eletromecânicos por medidores eletromecânicos inteligentes em até 15 anos após a aprovação da lei.
-
+%NodeJs
+%javascript
+%jquery
+%websocket
+%Sql
+%Mysql
+%esp8266
+%componentes do circuito
