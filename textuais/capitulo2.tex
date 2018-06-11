@@ -17,7 +17,32 @@ que é ajudar desenvolvedores na criação de aplicações de alta escalabilidad
 em um único servidor. O \textit{Node.js} é baseado na \textit{runtime} V8 \textit{JavaScript Engine}. Foi desenvolvido por Ryan Danhl em 2009, e o seu desenvolvimento
 é mantido pela fundação \textit{Node.js} e \textit{Linux Foundation}. 
 \subsection[\textit{JavaScript}]{\textit{JavaScript}}\label{js}
+JavaScript é uma linguagem de programação interpretada de alto nível, juntamente com HTML e CSS é uma das linguagens mais utilizadads no mundo \textit{web}.
+Após o uso da linguagem as páginas \textit{web} começaram a ter uma maior interatividade com o usuário. A grande maioria dos \textit{browsers} tem um
+mecanismo de compilação dedicado para o JavaScript. Por ser uma linguagem multi-paradigma o JavaScript suporta paradigmas funcionais, orientados a eventos 
+e até mesmo paradigmas de orientação a objeto.
+Inicialmente era usada apenas no lado do cliente em \textit{web browsers}, mas atualmente está presente em vários outros tipos de \textit{softwares} incluindo
+servidores - como já foi discutido na \autoref{node} - \textit{databases} e até sistemas \textit{desktop} como os leitores de PDF, programas de música e recentemente
+vem ganhando espaço no desenvolvimento de aplicativos para celular.
+
 \subsection[\textit{WebSocket}]{\textit{WebSocket}}\label{websocket}
+A ideia da tecnologia surgiu da problematica onde as comunicações entre servidor e aplicação era baseada na sobrecarga do HTTP, que não é indicado para aplicativos
+com baixa latência. O WebSocket define uma API que estabelece a conexão de soquete entre aplicação e servidor, resumidamente é uma conexão, baseada no protocolo TCP, persistente
+entre servidor e cliente onde ambas as partes podem enviar ou receber informações a qualquer momento. A forma como a conexão acontece é bem simples,
+o cliente e o servidor antes de tudo devem negociar o \textit{handshake} - processo pelo qual os dois lados, geralmente cliente e servidor, passam para
+reconhcimento de ambos os lados e concretizar a comunicação - de atualização do http e depois disso aplicar as regras assicronas do websocket, como mostra
+a \autoref{fig:websocket-diagram}.
+
+\begin{figure}[h!]
+	\includegraphics[width=0.6\textwidth, keepaspectratio=true]{websockets-diagram}
+	\centering
+	\caption[Diagrama de conexão via websocket]{Diagrama de conexão via websocket}
+	\fonte{\url{https://www.pubnub.com/learn/glossary/what-is-websocket/}{}}
+	\label{fig:websocket-diagram}
+\end{figure}
+\FloatBarrier
+
+
 \subsection[\textit{SQL}]{\textit{SQL}}\label{sql}
 
 \section[\textit{Componentes Físicos}]{\textit{Componentes Físicos}}\label{comp-fisico}
