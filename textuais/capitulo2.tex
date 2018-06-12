@@ -1,14 +1,15 @@
 \chapter[Embasamento Teórico]{Embasamento Teórico}
 \label{ch:cap2}
 O \textit{Power Monitor} surgiu da necessidade da conscientização do gasto energético e da melhor compreensão da conta de luz. Baseado nesse conceito,
-foram desenvolvido um \textit{software} que permitirá uma fácil comunicação com qualquer equipamento construído que tenha a finalizade de monitorar a energia elétrica.
+foram desenvolvido um \textit{software} que permitirá uma fácil comunicação com qualquer equipamento construído que tenha a finalidade de monitorar a energia elétrica e um \textit{hardware} para demonstração
+da comunicação entre ambos.
 O sistema traz uma forma mais fácil e próxima do consumidor final de se quantificar a energia elétrica consumido em um estabelecimento. No lugar do Quilowatt-hora, medida que é usada atualmente,
 o \textit{software} propõe mensurar o gasto energético em reais (R\$), trazendo a realidade do consumo mensal para mais próximo de cada brasileiro.
 
 Esse capítulo trará os conceitos essenciais para o entendimento do trabalho, descrevendo todas as tecnologias utilizadas no desenvolvimento 
 do \textit{software} como do \textit{hardware}.
 
-\section[\textit{Ferramentas e Linguagem}]{\textit{Ferramentas e Linguagem}}\label{ferramenta-linguagem}
+\section[\textit{Ferramentas e linguagens}]{\textit{Ferramentas e linguagens}}\label{ferramenta-linguagem}
 No decorrer do desenvolvimento do \textit{software} fez-se uso de algumas tecnologias e linguagens de programação que serão descrita no decorrer
 dessa seção.
 \subsection[\textit{Node.js}]{\textit{Node.js}}\label{node}
@@ -30,7 +31,7 @@ A ideia da tecnologia surgiu da problematica onde as comunicações entre servid
 com baixa latência. O WebSocket define uma API que estabelece a conexão de soquete entre aplicação e servidor, resumidamente é uma conexão, baseada no protocolo TCP, persistente
 entre servidor e cliente onde ambas as partes podem enviar ou receber informações a qualquer momento. A forma como a conexão acontece é bem simples,
 o cliente e o servidor antes de tudo devem negociar o \textit{handshake} - processo pelo qual os dois lados, geralmente cliente e servidor, passam para
-reconhcimento de ambos os lados e concretizar a comunicação - de atualização do http e depois disso aplicar as regras assicronas do websocket, como mostra
+reconhcimento de ambos os lados e concretizar a comunicação - de atualização do HTTP e depois disso aplicar as regras assicronas do websocket, como mostra
 a \autoref{fig:websocket-diagram}.
 
 \begin{figure}[h!]
@@ -44,7 +45,7 @@ a \autoref{fig:websocket-diagram}.
 
 
 \subsection[\textit{SQL}]{\textit{SQL}}\label{sql}
-A linguagem teve seu início dentro de um projeto chamado \textit{System R} que pertencia a IBM me meados dos anos 70. Structured Query Language, ou
+A linguagem teve seu início dentro de um projeto chamado \textit{System R} que pertencia a IBM em meados dos anos 70. Structured Query Language, ou
 comumente conhecida como SQL é uma linguagem padrão de banco de dados, se tornou bastante conhecida e usada devido a sua simplicidade e facilidade 
 de uso. Diferentemente das outras linguagens de banco de dados a consulta em SQL especifica a forma do resultado e não o caminho para chegar nele, uma outra
 grande diferena é que a linguagem SQL é declarativa diferindo mais uma vez das outras linguagens que por sua vez são procedurais.
@@ -60,6 +61,13 @@ banco de dados. Sua rápida popularização deve-se a fácil comuniação entre 
 	\label{fig:mysql-image}
 \end{figure}
 \FloatBarrier
+
+\subsection[\textit{Fritzing}]{\textit{Fritzing}}\label{fritzing}
+O \textit{Fritzing} é uma iniciativa \textit{open source} que inicialmente foi
+designada a desenvolvedores amadores que gostasse de tirar a sua ideia do papel. Em poucas palavras
+a plataforma auxilia os desenvolvedores por meio de uma interface gráfica nas primeiras montagens com Arduino
+ou outro microcontrolador, sua intuitiva interface proporciona ao usuário uma rápida montagem do circuito em protoboard. O \textit{software} vai além
+e permite com que os desenvolvedores tenha uma visão tanto da protoboar, como do esquemático elétrico. 
 
 
 \section[\textit{Componentes Físicos}]{\textit{Componentes Físicos}}\label{comp-fisico}
@@ -79,8 +87,8 @@ sem fio  fazendo conexões TCP/IP, tendo a capacidade de ser servidor ou cliente
 \FloatBarrier
 
 O NodeMcu é uma plataforma \textit{IoT} totalmente \textit{open source}. Tem como principal linguagem de script Lua, foi construído sobre o SDK ESP8266.
-A plataforma surgiu pouco tempo após o lançamento do ESP8266 (\autoref{esp}). A plataforma logo conquistou o seu espaço, pois trazia um de conjunto
-de circuitos já previamente embutido.
+A plataforma surgiu pouco tempo após o lançamento do ESP8266 (\autoref{esp}). A plataforma logo conquistou o seu espaço, pois trazia um conjunto
+de circuitos já previamente embutido que o ESP8266 por si só não proporcionava.
 
 \begin{figure}[h!]
 	\includegraphics[width=0.6\textwidth, keepaspectratio=true]{nodemcu}
@@ -91,7 +99,6 @@ de circuitos já previamente embutido.
 \end{figure}
 \FloatBarrier
 
-\subsection[\textit{Capacitor, Resistor e Relé}]{\textit{Capacitor, Resistor e Relé}}\label{crr}
 \subsection[\textit{Sensor de Corrente SCT 013-000}]{\textit{Sensor de Corrente SCT 013-000}}\label{sct}
 O Sensor é um ótimo transformador de corrente para leituras não invasivas, possuindo um fucionamento bem similar a de um alicate amperímetro. Com a seguinte especificação
 técnica: 
@@ -113,14 +120,3 @@ colocadas ao redor do condutor ao qual se quer medir a corrente
 	\label{fig:sct}
 \end{figure}
 \FloatBarrier
-
-\subsection[\textit{Fritzing}]{\textit{Fritzing}}\label{fritzing}
-
-%NodeJs
-%javascript
-%jquery
-%websocket
-%Sql
-%Mysql
-%esp8266
-%componentes do circuito
