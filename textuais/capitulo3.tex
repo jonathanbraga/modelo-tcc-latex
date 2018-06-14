@@ -117,5 +117,48 @@ nas telas de listagem, para os cômodos e dispositivos, já os parâmetros do si
 \end{figure}
 \FloatBarrier
 
+Uma vez que todos os cômodos, dispositivos e parâmetros já se encontram cadastrados e já exista a comunicação establecida com o hardware (***), a interface
+\textit{web} disponibiliza um séria de formas para visualização das informações coletadas e tratadas. Na \autoref{fig:extrato} é possível visualizar
+uma espécie de extrato do consumo de todos os dispositivos, podendo perceber quando foram ligados, quando foram desligados e assim resultando no total gasto.
+Já as figuras: \ref{fig:ano-c}, \ref{fig:matu-c} e \ref{fig:mant-c} referem-se aos gráficos que são contruídos baseados nas informações coletadas pelo sistema.
+
+Os gráficos por sua vez são construídos mediante aos calculos que o sistema faz que usa como base (\autoref{eq-consumo})
+
+\begin{equation} \label{eq-consumo}
+	\frac{consumoDoDispositivo \times horasDeUso}{diasDoMês} \times tarifa
+\end{equation}
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{extrato}
+	\centering
+	\caption[Demonstrativo do gasto de cada dispositivo]{Demonstrativo do gasto de cada dispositivo}
+	\label{fig:extrato} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{ano-c}
+	\centering
+	\caption[Consumo geral de todos os dispositivos por cômodo ao longo do ano]{Consumo geral de todos os dispositivos por cômodo ao longo do ano}
+	\label{fig:ano-c} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{matu-c}
+	\centering
+	\caption[Consumo geral de todos os dispositivos por cômodo ao longo do mês atual]{Consumo geral de todos os dispositivos por cômodo ao longo do mês atual}
+	\label{fig:matu-c} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{mant-c}
+	\centering
+	\caption[Consumo geral de todos os dispositivos por cômodo ao longo do mês anterior]{Consumo geral de todos os dispositivos por cômodo ao longo do mês anterior}
+	\label{fig:mant-c} 
+\end{figure}
+\FloatBarrier
+
 \section[\textit{Hardware}]{\textit{Hardware}}\label{hard-sec}
 \section[\textit{Resultados}]{\textit{Resultados}}\label{resultados-sec}
