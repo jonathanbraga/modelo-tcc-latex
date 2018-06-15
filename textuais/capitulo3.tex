@@ -122,11 +122,18 @@ Uma vez que todos os cômodos, dispositivos e parâmetros já se encontram cadas
 uma espécie de extrato do consumo de todos os dispositivos, podendo perceber quando foram ligados, quando foram desligados e assim resultando no total gasto.
 Já as figuras: \ref{fig:ano-c}, \ref{fig:matu-c} e \ref{fig:mant-c} referem-se aos gráficos que são contruídos baseados nas informações coletadas pelo sistema.
 
-Os gráficos por sua vez são construídos mediante aos calculos que o sistema faz que usa como base (\autoref{eq-consumo})
+Os gráficos por sua vez são construídos mediante aos calculos que o sistema faz usando como base a \autoref{eq-consumo}, o resusltado dessa conta
+fornece ao sistema o consumo em reais (R\$) do dispostivo em um dado intervalo de tempo conhecido. Vale salientar que o resultado é o esperado já que o consumo
+do dispositivo (KWh) é pré definido pelo usuário (\autoref{fig:c-dispositivo}), para o cálculo real do consumo usa-se a \autoref{eq-potencia} que leva em conta a corrente real que passa
+pelo dispositivo ao longo do tempo que ele permanece ligado. Com esses dados é que se torna possível a construção dos gráficos e extrado presentes no sistema.
 
 \begin{equation} \label{eq-consumo}
-	\frac{consumoDoDispositivo \times horasDeUso}{diasDoMês} \times tarifa
+	\frac{consumo \, \, do \, \, dispositivo \times tempo \, \, de \, \, uso}{número \, \, de \, \, dias \, \, no \, \, mês} \times tarifa
 \end{equation}
+
+\begin{equation} \label{eq-potencia}
+	 \frac{ (tensão \times corrente) \times horas \, \, de \, \, uso \, \, por dia \times número \, \, de \, \, dias \, \, no \, \, mês}{1000}
+\end{equation} 
 
 \begin{figure}[h!]
 	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{extrato}
@@ -157,6 +164,62 @@ Os gráficos por sua vez são construídos mediante aos calculos que o sistema f
 	\centering
 	\caption[Consumo geral de todos os dispositivos por cômodo ao longo do mês anterior]{Consumo geral de todos os dispositivos por cômodo ao longo do mês anterior}
 	\label{fig:mant-c} 
+\end{figure}
+\FloatBarrier
+
+O \textit{softaware} também possui um local específico para a gerência dos cômodos, um espaço destinado para a vinculação de dispositivos ao cômodo,
+visualização do total gasto em relação ao mês atual em forma de gráfico e a opção de ligar, desligar ou excluir o dispostivo do cômodo. As figuras:
+\ref{fig:comodo-ft}, \ref{fig:v-dispositivo} e \ref{fig:a-dispositivo} retratam o cenário descrito.
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{comodo}
+	\centering
+	\caption[Visão geral da gerência de um cômodo]{Visão geral da gerência de um cômodo}
+	\label{fig:comodo-ft} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{v-dispositivo}
+	\centering
+	\caption[Vincular dispositivo ao cômodo]{Vincular dispositivo ao cômodo}
+	\label{fig:v-dispositivo} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{a-dispositivo}
+	\centering
+	\caption[Ações que podem ser realizadas no dispositivo vinculado]{Ações que podem ser realizadas no dispositivo vinculado}
+	\label{fig:a-dispositivo} 
+\end{figure}
+\FloatBarrier
+
+Outras duas funcionalidades do sistem são os alarmes que são gerados quando o usuário passa dos 50\% e dos 80\% do consumo esperado, cadastrado previamente pelo mesmo e
+também o simulador de gastos, onde é possível calcular o gasto mensal e diário que um dispositivo irá trazer para uma residência. As figuras
+\ref{fig:aviso-a}, \ref{fig:aviso-v} e \ref{fig:simulador} retratam o descrito.
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{aviso-a}
+	\centering
+	\caption[Alerta exibido quando o consumo supera os 50\% do previsto]{Alerta exibido quando o consumo supera os 50\% do previsto}
+	\label{fig:aviso-a} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{aviso-v}
+	\centering
+	\caption[Alerta exibido quando o consumo supera os 80\% do previsto]{Alerta exibido quando o consumo supera os 80\% do previsto}
+	\label{fig:aviso-v} 
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{simulador}
+	\centering
+	\caption[Simulador de gastos]{Simulador de gastos}
+	\label{fig:simulador} 
 \end{figure}
 \FloatBarrier
 
