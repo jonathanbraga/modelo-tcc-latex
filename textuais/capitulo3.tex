@@ -1,7 +1,7 @@
 \chapter[Desenvolvimento]{Desenvolvimento}
 \label{ch:desenvolvimento}
 O \textit{Power Monitor} surgiu da necessidade da conscientização do gasto energético e da melhor compreensão da conta de luz. Baseado nesse conceito,
-foram desenvolvido um \textit{software} que permitirá uma fácil comunicação com qualquer equipamento construído que tenha a finalidade de monitorar a energia elétrica e um \textit{hardware} para demonstração
+foi desenvolvido um \textit{software} que permite uma fácil comunicação com qualquer equipamento construído que tenha a finalidade de monitorar a energia elétrica e um \textit{hardware} para demonstração
 da comunicação entre ambos. O sistema traz uma forma mais fácil e próxima do consumidor final de se quantificar a energia elétrica consumida em um estabelecimento. No lugar do Quilowatt-hora, medida que é usada atualmente,
 o \textit{software} propõe mensurar o gasto energético em reais (R\$), trazendo a realidade do consumo mensal para mais próximo de cada brasileiro.
 
@@ -66,9 +66,19 @@ O \textit{software} pode ser dividido em duas partes, servidor \textit{web} e in
 é feita pelo \textit{MySQL Server} (\autoref{sql}). A interface \textit{web} é o agente consumidor de todos esses serviços, com uma comunicação via 
 \textit{webscoket} (\autoref{websocket}) com o servidor é capaz de receber e enviar dados a qualquer instante. A combinação desses três serviços - servidor \textit{web},
 servidor do banco de dados e interface \textit{web} - resultou em uma aplicação intuitiva e amigável, desenvolvida para dar o total suporte às análises do dados
-enviados pelo \textit{hardware}. Como já foi apresentada a \autoref{fig:principal-ft} representa a tela inicial da interface \textit{web}, vê-se que é possível
+enviados pelo \textit{hardware}. A \autoref{fig:banco-dados} representa o esquema das tabelas do banco de dados que foi utulizado no \textit{Power Monitor}.
+
+Como já foi apresentada a \autoref{fig:principal-ft} representa a tela inicial da interface \textit{web}, vê-se que é possível
 visualizar o total gasto no mês decorrente, o progresso dos gastos por cômodo que por sua vez é baseado na espectativa de gasto mensal (\autoref{fig:configuracao-ft}), a lista
 de todos os cômodos cadastrados e um gráfico mostrando o consumo por cômodo referente ao mês atual.
+
+\begin{figure}[h!]
+	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{banco}
+	\centering
+	\caption[Esquema das tabelas do banco de dados]{Esquema das tabelas do banco de dados}
+	\label{fig:banco-dados}
+\end{figure}
+\FloatBarrier
 
 As figuras: \ref{fig:c-comodo}, \ref{fig:l-comodo}, \ref{fig:c-dispositivo}, \ref{fig:l-dispositivo} e \ref{fig:configuracao-ft}, 
 são relacionadas as telas de cadastro, listagem e de configuração da interface \textit{web}. Nelas é possível cadastrar e listar comodôs e dispositivos assim como 
@@ -224,4 +234,79 @@ também o simulador de gastos, onde é possível calcular o gasto mensal e diár
 \FloatBarrier
 
 \section[\textit{Hardware}]{\textit{Hardware}}\label{hard-sec}
+O desenvolvimento do \textit{hardware} para demonstação da comunicação com o \textit{power monitor} envolve uma série de sensores e componentes
+eletrônicos. A plataforma de prototipagem eletrônica utilizada para a construção desse \textit{hardware}, foi o ESP8266(\autoref{esp}). O principal sensor
+utilizado foi o SCT 013-000 (\autoref{sct}), que tem o papel de aferir dados da corrente que passa pelos dispositivos ao longo do tempo que o mesmo se encontra
+ligado, também vale destacar o uso do relé que é responsável por toda a lógica de liga e desliga do dispositivo. O ESP8266 faz o intermédio da comunicação entre 
+\textit{hardware} e servidor \textit{web}, fazendo toda a comunicação eletrônica entre o sensor e o circuito montado (**), e enviando os dados
+recebidos pelo sensor de corrente para o banco de dados via comunicação \textit{websocket} com o servidor \textit{web}. Com relação aos dados enviados 
+para o banco de dados, foi feito um algoritmo que quando identifica que o dispositivo está ligado fica verificando a corrente média que 
+passa pelo dispostivio e quando o mesmo é desligado é calculada uma média das correntes, esse resultado é multiplicado pelo valor da tensão
+e assim é obtido o consumo (KWh) do dispositivo. Após esse processo a informação é levada ao banco de dados e consumida pela interface \textit{web}.
+
+É válido lembrar que, para a comunicação \textit{websocket} é necessário o \textit{hardware} e o \textit{softaware} estarem conectados
+na mesma rede \textit{Wi-Fi}. O grande motivo para a escolha do ESP8266 como plataforma de prototipagem foi a sua fácil comunicação com uma rede
+\textit{Wi-Fi}, o código a seguir é um exemplo de como estabelecer a comunicação com uma rede sem fio.
+
+\newpage
+
+\begin{lstlisting}
+	#include <ESP8266WiFi.h>
+	const char* ssid = NOME DA REDE;
+	const char* password = SENHA;
+	
+	WiFi.begin(ssid, password);
+\end{lstlisting}
+
+Após estabelecer a conecção o próximo passo será interligar o servidor \textit{web} com o \textit{hardware} através da comunicação por \textit{websocket},
+que será facilitada por meio da biblioteca \textit{SocketIOClient}, ela nos proporciona alguns métodos como: \textit{\textbf{emit}}\protect\footnotemark, \textit{\textbf{on}}\protect\footnotemark 
+e \textit{\textbf{connect}}\protect\footnotemark  que ajudam no momento de concretizar a comunicação total do \textit{hardware}. A seguir terá um
+exemplo de como usar os métodos citados com o código anterior.
+
+\begin{lstlisting}
+	#include <SocketIOClient.h>
+	SocketIOClient socket;
+	const char* ssid = NOME DA REDE;
+	const char* password = SENHA;
+	String host = IP DO SERVIDOR WEB;
+	int port = PORTA QUE FOI FORNECIDA AO SERVIDOR WEB;	
+
+	void led(String state) {
+	Serial.println("[led] " + state);
+	if (state == "\"state\":true") {
+	socket.emit("post-informacao","{\"data\":\"1\"}");
+	}
+	else {
+	socket.emit("post-informacao","{\"data\":\"0\"}");
+	}
+	}
+
+	void setup() {
+		WiFi.begin(ssid, password);
+  		socket.on("ligar", ligar);  
+  		socket.connect(host, port);
+	}
+
+	void loop() {
+  		socket.monitor();    
+	}
+\end{lstlisting}
+
+
+\addtocounter{footnote}{-2}
+\footnotetext{Função responsável por emitir os dados para o servidor \textit{web}}
+\addtocounter{footnote}{1}
+\footnotetext{Função responsável por receber os dados do servidor \textit{web}}
+\addtocounter{footnote}{1}
+\footnotetext{Função responsável por estabelecer conecção com servidor \textit{web}}
+
+
+\begin{figure}[h!]
+	\includegraphics[width=0.8\textwidth, keepaspectratio=true]{circuito}
+	\centering
+	\caption[Circuito demonstrativo para comunicação com o \textit{power monitor}]{Circuito demonstrativo para comunicação com o \textit{power monitor}}
+	\label{fig:circuito} 
+\end{figure}
+\FloatBarrier
+
 \section[\textit{Resultados}]{\textit{Resultados}}\label{resultados-sec}
