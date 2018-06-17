@@ -238,7 +238,7 @@ O desenvolvimento do \textit{hardware} para demonstação da comunicação com o
 eletrônicos. A plataforma de prototipagem eletrônica utilizada para a construção desse \textit{hardware}, foi o ESP8266(\autoref{esp}). O principal sensor
 utilizado foi o SCT 013-000 (\autoref{sct}), que tem o papel de aferir dados da corrente que passa pelos dispositivos ao longo do tempo que o mesmo se encontra
 ligado, também vale destacar o uso do relé que é responsável por toda a lógica de liga e desliga do dispositivo. O ESP8266 faz o intermédio da comunicação entre 
-\textit{hardware} e servidor \textit{web}, fazendo toda a comunicação eletrônica entre o sensor e o circuito montado (**), e enviando os dados
+\textit{hardware} e servidor \textit{web}, fazendo toda a comunicação eletrônica entre o sensor e o circuito montado (\autoref{fig:circuito}), e enviando os dados
 recebidos pelo sensor de corrente para o banco de dados via comunicação \textit{websocket} com o servidor \textit{web}. Com relação aos dados enviados 
 para o banco de dados, foi feito um algoritmo que quando identifica que o dispositivo está ligado fica verificando a corrente média que 
 passa pelo dispostivio e quando o mesmo é desligado é calculada uma média das correntes, esse resultado é multiplicado pelo valor da tensão
@@ -262,6 +262,13 @@ Após estabelecer a conecção o próximo passo será interligar o servidor \tex
 que será facilitada por meio da biblioteca \textit{SocketIOClient}, ela fornece alguns métodos como: \textit{\textbf{emit}}\protect\footnotemark, \textit{\textbf{on}}\protect\footnotemark 
 e \textit{\textbf{connect}}\protect\footnotemark  que ajudam no momento de concretizar a comunicação total do \textit{hardware}. A seguir terá um
 exemplo de como usar os métodos citados com o código anterior.
+
+\addtocounter{footnote}{-2}
+\footnotetext{Função responsável por emitir os dados para o servidor \textit{web}}
+\addtocounter{footnote}{1}
+\footnotetext{Função responsável por receber os dados do servidor \textit{web}}
+\addtocounter{footnote}{1}
+\footnotetext{Função responsável por estabelecer conecção com servidor \textit{web}}
 
 \begin{lstlisting}
 	#include <SocketIOClient.h>
@@ -292,14 +299,12 @@ exemplo de como usar os métodos citados com o código anterior.
 	}
 \end{lstlisting}
 
-
-\addtocounter{footnote}{-2}
-\footnotetext{Função responsável por emitir os dados para o servidor \textit{web}}
-\addtocounter{footnote}{1}
-\footnotetext{Função responsável por receber os dados do servidor \textit{web}}
-\addtocounter{footnote}{1}
-\footnotetext{Função responsável por estabelecer conecção com servidor \textit{web}}
-
+A \autoref{fig:circuito} mostra bem o circuito demonstrativo utilizado neste trabalho para exemplificar a comunicacação com o \textit{power monitor}.
+O esquema representa uma forma prática e simples de se usar o sensor de corrente, o SCT 013-000 é ativado quando o usuário liga a lâmpada no interruptor
+(representado por um botão) ou pelo sistema \textit{web} (\autoref{fig:a-dispositivo}), fazendo com que o relé ative e permita com que o dispositivo 
+mude o estado para, ligado. Após esse processo o sistema irá contabilzar a média da corrente que passou pelo dispositivo, e ao ser desligado o resultado
+das médias irá ser transmitido via \textit{websocket} para o servidor \textit{web} e se juntará com o resultado do tempo em que o dispositivo permaneceu
+ligado para que por fim se possa ter o consumo e o gasto deferido pelo equipamento. 
 
 \begin{figure}[h!]
 	\includegraphics[width=0.8\textwidth, keepaspectratio=true]{circuito}
@@ -310,3 +315,4 @@ exemplo de como usar os métodos citados com o código anterior.
 \FloatBarrier
 
 \section[\textit{Resultados}]{\textit{Resultados}}\label{resultados-sec}
+
