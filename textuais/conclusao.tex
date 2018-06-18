@@ -19,4 +19,21 @@ Este trabalho traz uma solução eficiente no monitoramento de energia elétrica
 o utente possa, ainda sim, monitorar os seus gatos por meio das simulações que levam em conta o consumo esperado do dispositivo. A facilidade de estabelecer 
 a comunicação entre servidor \textit{web} e outros dispositivos físicos, traz a possibilidade do usuário poder sempre expandir e melhorar as formas
 de monitoramento de energia em sua residência. Além disso o trabalho implementa um novo padrão para se mensurar o consumo da energia elétrica nas
-residências ,  
+residências, no lugar do complexo quilowatt-hora, medida que atualment é utilizada para quantificação do consumo energético, o \textit{power monitor}
+explora uma abordagem mais simples e mais perto do dia a dia de todo brasileiro, mensura todo o consumo de energia elétrica da residência em 
+reais, moeda em circulação no país. 
+
+A troca do quilowatt-hora pela moeda real, faz com que o consumidor entenda a verdadeira situção da sua conta de energia, possibilitando um melhor planejamento
+financeiros e o insentivo a consumir apenas o que é necessário. Apesar do sistema atingir os resultados esperados, existem algumas melhorias 
+que podem ser consideradas para trabalhos futuros. A primeira seria criar um \textit{hardware} mas robusto, onde adicionaria um Arduino Uno
+que contribuiria com mais entradas analógicas e digitais, isso influenciaria em uma maior acoplação de relés que por sua vez
+influencia na quantidade de eletrodomesticos adicionados ao \textit{power monitor}, o arduino por sua vez se comunicaria via conexão serial 
+com o NodeMCU. A Segunda melhoria seria em relação ao monitoramento da tensão em um dispositivo ligado, a inclusão de um sensor de tensão 
+seria a melhor opção para poder se obter a potêncial real que o dispositivo consome. A última mudança a ser destacada é na parte do 
+\textit{software}, melhorias em relação ao servidor \textit{web} como por exemplo, maior segurança nos dados armazenados, possibilidade para criação
+de mais usuários, segurança nas transações de informação com o \textit{hardware} e com a interface \textit{web} e um aumento nos \textit{end-points}
+que acarretaria em uma maior disponibilidade de dados. Na parte da interface \textit{web} as melhorias seriam direcionadas a correção de \textit{bugs} 
+existentes na primeira versão e uma melhor estruturação para que se possibilite uma customização do usuário em relação aos dados em que ele deseja visualizar.
+
+Em conclusão o sistema proposto por este trabalho, supre as necessidades de gerenciamento dos equipamentos eletrônicos
+presente em uma residência e de um melhor entendimento em relação aos gastos e disperdícios de energia elétrica.
