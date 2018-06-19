@@ -12,8 +12,8 @@ entre ambos.
 \section[\textit{Visão Geral}]{\textit{Visão Geral}}\label{visal-geral}
 
 Em resumo pode-se ter uma visão geral de como o ambiente - \textit{software} e \textit{hardware} - funciona observando a \autoref{fig:diagrama-vg}.
-O sistema \textit{web} é responsável por fazer a comunicação entre o banco de dados e os dispositivos, já os eletrodomesticos são gerenciados
-pelo ESP8266 que possui uma comunicação direta via \textit{websocket} com o servidor \textit{web}.
+O sistema \textit{web} é responsável por fazer a comunicação entre o banco de dados e os dispositivos, já os eletrodomésticos são gerenciados
+pelo NodeMCU que possui uma comunicação direta via \textit{websocket} com o servidor \textit{web}.
 
 \begin{figure}[h!]
 	\includegraphics[width=0.7\textwidth, keepaspectratio=true]{diagrama-1}
@@ -24,13 +24,13 @@ pelo ESP8266 que possui uma comunicação direta via \textit{websocket} com o se
 \FloatBarrier
 
 \section[\textit{Software}]{\textit{Software}}\label{soft-sec}
-O controle dos dispositivos de um cômodo, que estão interligados com o \textit{ESP8266} são controlados pelo \textit{software}. Dessa forma
-todos os dispositivos que possuem comunicação com o microcontrolador e que estão cadastrados nos sistema podem ser controlados (Ligar/Desligar) e também
+O controle dos dispositivos de um cômodo, que estão interligados com o \textit{NodeMCU} são controlados pelo \textit{software}. Dessa forma
+todos os dispositivos que possuem comunicação com a plataforma de prototipagem e que estão cadastrados nos sistema podem ser controlados (Ligar/Desligar) e também
 é possível ter um acompanhamento dos gastos.
 
 O sistema possui uma interface \textit{web} que pode ser acessada por qualquer dispositivo que tenha acesso a internet e possua um 
 \textit{browser}, como por exemplo: celulares, computadores, \textit{smart tv} etc. O \textit{software} possui uma interface de apenas um único usuário, ao acessar o sistema o usuário se depara com um
-visual bem agradável e fácil de se usar. Logo ao entrar no sistema o utente se depara com a tela princiapl, \autoref{fig:principal-ft}, nela encontra-se
+visual bem agradável e fácil de se usar. Logo ao entrar no sistema o utente se depara com a tela principal, \autoref{fig:principal-ft}, nela encontra-se
 as principais informações que o usuário irá precisar, como também irá mostrar as opções de cadastrar um novo dispositivo, listar os dispositivos, cadastrar um novo cômodo,
 listar um novo cômodo etc.
 
@@ -42,14 +42,14 @@ listar um novo cômodo etc.
 \end{figure}
 \FloatBarrier
 
-Todas as informações colhidas pelo servidor \textit{web} em \textit{node.js} (\autoref{node}), são recebidas e tratadas pelo sistema \textit{web}. Os dados
-são importantíssimos, pois mediante eles é que se torna possível a contrução dos gráficos e das previsões fornecidas pelo sistema. No \textit{power monitor}
+Todas as informações colhidas pelo servidor \textit{web} em \textit{node.js} (\autoref{node}), são recebidas e tratadas pelo interface \textit{web}. Os dados
+são importantíssimos, pois mediante eles é que se torna possível a construção dos gráficos e das previsões fornecidas pelo sistema. No \textit{power monitor}
 a forma de comunicação com o banco de dados é feita mediante as chamadas de API, existe uma chamada para cada ação prevista no sistema. A \autoref{fig:api-ft}
 retrata bem esse cenário, pode-se perceber que o \textit{end-point} (expressão utilizada para se referenciar a uma extremidade de um canal de comunicação.) 
 \textbf{get-comodos} é destinado a obtenção de todos os cômodos cadastrados já o \textit{end-point} \textbf{get-dispositivos} é destinado a 
-obtenção de todos os dispostivos cadastrados. O motivo da comunicação entre servidor \textit{web} e sistema \textit{web}
-ser feita via chamada de API é bem simples, pois qualquer sistema seja \textit{web, desktop} ou qualquer outro tipo, basicamente precisa ter uma comunicação com uma rede \textit{Wi-Fi}
-para utilizar o \textit{power monitor}. O \textit{software web} não precisa obrigatoriamente de internet para poder funcionar, pois a comunicação entre servidor e sistema é
+obtenção de todos os dispositivos cadastrados. O motivo da comunicação entre servidor \textit{web} e interface \textit{web}
+ser feita via chamada de API é bem simples, pois qualquer sistema seja \textit{web, desktop} ou qualquer outro tipo, pois basicamente precisa ter uma comunicação com uma rede \textit{Wi-Fi}
+para utilizar o \textit{power monitor}. O \textit{software} não precisa obrigatoriamente de internet para poder funcionar, pois a comunicação entre servidor e sistema é
 baseada em uma rede local, justamente para que o \textit{software} não dependa de terceiros. Para uma perfeita comunicação o ambiente só precisa está configurado
 na mesma rede \textit{Wi-Fi}. 
 
@@ -64,12 +64,12 @@ na mesma rede \textit{Wi-Fi}.
 O \textit{software} pode ser dividido em duas partes, servidor \textit{web} e interface \textit{web}. O servidor foi desenvolvido usando a linguagem
 \textit{javascript} (\autoref{js}) e para auxílio foi utilizado o \textit{framework node.js} (\autoref{node}), a comunicação entre servidor e banco de dados
 é feita pelo \textit{MySQL Server} (\autoref{sql}). A interface \textit{web} é o agente consumidor de todos esses serviços, com uma comunicação via 
-\textit{webscoket} (\autoref{websocket}) com o servidor é capaz de receber e enviar dados a qualquer instante. A combinação desses três serviços - servidor \textit{web},
-servidor do banco de dados e interface \textit{web} - resultou em uma aplicação intuitiva e amigável, desenvolvida para dar o total suporte às análises do dados
-enviados pelo \textit{hardware}. A \autoref{fig:banco-dados} representa o esquema das tabelas do banco de dados que foi utulizado no \textit{power monitor}.
+\textit{webscoket} (\autoref{websocket}) com o servidor é capaz de receber e enviar dados a todo instante. A combinação desses três serviços - servidor \textit{web},
+servidor do banco de dados e interface \textit{web} - resultou em uma aplicação intuitiva e amigável, desenvolvida para dar o total suporte às análises dos dados
+enviados pelo \textit{hardware}. A \autoref{fig:banco-dados} representa o esquema das tabelas do banco de dados que foi utilizado no \textit{power monitor}.
 
 Como já foi apresentada a \autoref{fig:principal-ft} representa a tela inicial da interface \textit{web}, vê-se que é possível
-visualizar o total gasto no mês atual, o progresso dos gastos por cômodo que por sua vez é baseado na espectativa de gasto mensal (\autoref{fig:configuracao-ft}), a lista
+visualizar o total gasto no mês atual, o progresso dos gastos por cômodo que por sua vez é baseado na expectativa de gasto mensal (\autoref{fig:configuracao-ft}), a lista
 de todos os cômodos cadastrados e um gráfico mostrando o consumo por cômodo referente ao mês atual.
 
 \begin{figure}[h!]
@@ -81,8 +81,8 @@ de todos os cômodos cadastrados e um gráfico mostrando o consumo por cômodo r
 \FloatBarrier
 
 As figuras: \ref{fig:c-comodo}, \ref{fig:l-comodo}, \ref{fig:c-dispositivo}, \ref{fig:l-dispositivo} e \ref{fig:configuracao-ft}, 
-são relacionadas as telas de cadastro, listagem e de configuração da interface \textit{web}. Nelas é possível cadastrar e listar comodôs e dispositivos assim como 
-configurar alguns parâmetros do sistema como o preço da trarifa cobrado por quilowatt-hora pela empresa resposável e a espectativa de gasto mensal.
+são relacionadas as telas de cadastro, listagem e de configuração da interface \textit{web}. Nelas é possível cadastrar e listar comôdos e dispositivos assim como 
+configurar alguns parâmetros do sistema como o preço da tarifa cobrada por quilowatt-hora pela empresa responsável e a expectativa de gasto mensal.
 
 Uma vez que os cômodos, dispositivos e parâmetros são cadastrados no sistema é possível gerencia-los através da edição ou exclusão dos dados, que se torna possível
 nas telas de listagem, para os cômodos e dispositivos, já os parâmetros do sistema na própria tela de configuração se faz a edição dos dados. 
@@ -127,15 +127,15 @@ nas telas de listagem, para os cômodos e dispositivos, já os parâmetros do si
 \end{figure}
 \FloatBarrier
 
-Uma vez que todos os cômodos, dispositivos e parâmetros já se encontram cadastrados e já exista a comunicação establecida com o hardware, a interface
+Uma vez que todos os cômodos, dispositivos e parâmetros já se encontram cadastrados e já exista a comunicação estabelecida com o hardware, a interface
 \textit{web} disponibiliza um séria de formas para visualização das informações coletadas e tratadas. Na \autoref{fig:extrato} é possível visualizar
 uma espécie de extrato do consumo de todos os dispositivos, podendo perceber quando foram ligados, quando foram desligados e assim resultando no total gasto.
-Já as figuras: \ref{fig:ano-c}, \ref{fig:matu-c} e \ref{fig:mant-c} referem-se aos gráficos que são contruídos baseados nas informações coletadas pelo sistema.
+Já as figuras: \ref{fig:ano-c}, \ref{fig:matu-c} e \ref{fig:mant-c} referem-se aos gráficos que são construídos baseados nas informações coletadas pelo sistema.
 
-Os gráficos por sua vez são construídos mediante aos calculos que o sistema faz usando como base a \autoref{eq-consumo}, o resusltado dessa conta
-fornece ao sistema o consumo em reais (R\$) do dispostivo em um dado intervalo de tempo conhecido. Vale salientar que o resultado é o esperado já que o consumo
+Os gráficos por sua vez são construídos mediante aos cálculos que o sistema faz usando como base a \autoref{eq-consumo}, o resultado dessa conta
+fornece ao sistema o consumo em reais (R\$) do dispositivo em um dado intervalo de tempo conhecido. Vale salientar que o resultado é o esperado já que o consumo
 do dispositivo (KWh) é pré definido pelo usuário (\autoref{fig:c-dispositivo}), para o cálculo real do consumo usa-se a \autoref{eq-potencia} que leva em conta a corrente real que passa
-pelo dispositivo ao longo do tempo que ele permanece ligado. Com esses dados é que se torna possível a construção dos gráficos e extrado presentes no sistema.
+pelo dispositivo ao longo do tempo que ele permanece ligado. Com esses dados é que se torna viável a construção dos gráficos e extrato presentes no sistema.
 
 \begin{equation} \label{eq-consumo}
 	\frac{consumo \, \, do \, \, dispositivo \times tempo \, \, de \, \, uso}{número \, \, de \, \, dias \, \, no \, \, mês} \times tarifa
@@ -177,8 +177,8 @@ pelo dispositivo ao longo do tempo que ele permanece ligado. Com esses dados é 
 \end{figure}
 \FloatBarrier
 
-O \textit{softaware} também possui um local específico para a gerência dos cômodos, um espaço destinado para a vinculação de dispositivos ao cômodo,
-visualização do total gasto em relação ao mês atual em forma de gráfico e a opção de ligar, desligar ou excluir o dispostivo do cômodo. As figuras:
+O \textit{software} também possui um local específico para a gerência dos cômodos, um espaço destinado para a vinculação de dispositivos ao cômodo,
+visualização do total gasto em relação ao mês atual em forma de gráfico e a opção de ligar, desligar ou excluir o dispositivo do cômodo. As figuras:
 \ref{fig:comodo-ft}, \ref{fig:v-dispositivo} e \ref{fig:a-dispositivo} retratam o cenário descrito.
 
 \begin{figure}[h!]
@@ -234,10 +234,10 @@ Também existe um simulador de gastos, onde é possível calcular o gasto mensal
 \FloatBarrier
 
 \section[\textit{Hardware}]{\textit{Hardware}}\label{hard-sec}
-O desenvolvimento do \textit{hardware} para demonstação da comunicação com o \textit{power monitor} envolve uma série de sensores e componentes
-eletrônicos. A plataforma de prototipagem eletrônica utilizada para a construção desse \textit{hardware}, foi o ESP8266(\autoref{esp}). O principal sensor
+O desenvolvimento do \textit{hardware} para demonstração da comunicação com o \textit{power monitor} envolve uma série de sensores e componentes
+eletrônicos. A plataforma de prototipagem eletrônica utilizada para a construção desse \textit{hardware}, foi o NodeMCU(\autoref{esp}). O principal sensor
 utilizado foi o SCT 013-000 (\autoref{sct}), que tem o papel de aferir dados da corrente que passa pelos dispositivos ao longo do tempo que o mesmo se encontra
-ligado, também vale destacar o uso do relé que é responsável por toda a lógica de liga e desliga do dispositivo. O ESP8266 faz o intermédio da comunicação entre 
+ligado, também vale destacar o uso do relé que é responsável por toda a lógica de liga e desliga do dispositivo. O NodeMCU faz o intermédio da comunicação entre 
 \textit{hardware} e servidor \textit{web}, fazendo toda a comunicação eletrônica entre o sensor e o circuito montado (\autoref{fig:circuito}), e enviando os dados
 recebidos pelo sensor de corrente para o servidor \textit{web} que por sua vez, salva as medições aferidas no banco de dados. Com relação aos dados enviados 
 para o banco, foi feito um algoritmo que ao identificar que o dispositivo está ligado verificando a corrente elétrica no presente momento e quando o mesmo é desligado 
@@ -245,14 +245,14 @@ para o banco, foi feito um algoritmo que ao identificar que o dispositivo está 
 e assim é obtido o consumo do dispositivo (KWh). Após esse processo a informação é enviada via \textit{webscoket} 
 para o servidor \textit{web} que salva tudo no banco de dados, e por fim a informação é consumida pela interface \textit{web}.
 
-É válido lembrar que, para a comunicação \textit{websocket} é necessário o \textit{hardware} e o \textit{softaware} estarem conectados
-na mesma rede \textit{Wi-Fi}. O grande motivo para a escolha do ESP8266 como plataforma de prototipagem foi a sua fácil comunicação com uma rede
+É válido lembrar que, para a comunicação \textit{websocket} é necessário o \textit{hardware} e o \textit{software} estarem conectados
+na mesma rede \textit{Wi-Fi}. O grande motivo para a escolha do NodeMCU como plataforma de prototipagem foi a sua fácil comunicação com uma rede
 \textit{Wi-Fi}, o código a seguir é um exemplo de como estabelecer a comunicação com uma rede sem fio.
 
 \newpage
 
 \begin{lstlisting}
-	#include <ESP8266WiFi.h>
+	#include <NodeMCUWiFi.h>
 	const char* ssid = NOME DA REDE;
 	const char* password = SENHA;
 	
@@ -262,7 +262,7 @@ na mesma rede \textit{Wi-Fi}. O grande motivo para a escolha do ESP8266 como pla
 Após estabelecer a conexão o próximo passo será interligar o servidor \textit{web} com o \textit{hardware} através da comunicação por \textit{websocket},
 que será facilitada por meio da biblioteca \textit{SocketIOClient}, ela fornece alguns métodos como: \textit{\textbf{emit}}\protect\footnotemark, \textit{\textbf{on}}\protect\footnotemark 
 e \textit{\textbf{connect}}\protect\footnotemark  que ajudam no momento de concretizar a comunicação total do \textit{hardware}. A seguir terá um
-exemplo de como usar os métodos citados com o código anterior.
+exemplo de como usar os métodos citados em conjunto com o código anterior.
 
 \addtocounter{footnote}{-2}
 \footnotetext{Função responsável por emitir os dados para o servidor \textit{web}}
@@ -300,7 +300,7 @@ exemplo de como usar os métodos citados com o código anterior.
 	}
 \end{lstlisting}
 
-A \autoref{fig:circuito} mostra bem o circuito demonstrativo utilizado neste trabalho para exemplificar a comunicacação com o \textit{power monitor}.
+A \autoref{fig:circuito} mostra bem o circuito demonstrativo utilizado neste trabalho para exemplificar a comunicação com o \textit{power monitor}.
 O esquema representa uma forma prática e simples de se usar o sensor de corrente, o SCT 013-000 é ativado quando o usuário liga a lâmpada no interruptor
 (representado por um botão) ou pelo sistema \textit{web} (\autoref{fig:a-dispositivo}), fazendo com que o relé ative e permita com que o dispositivo 
 mude o estado para ligado. Após esse processo o sistema irá medir corrente que passa pelo dispositivo, e ao ser desligado o resultado
@@ -320,13 +320,13 @@ ligado para que por fim se possa se ter o consumo e o gasto deferido pelo equipa
 Depois de todo o estudo realizado, possibilidades discutidas e desenvolvimento detalhado, chegou-se ao  funcionamento da primeira versão
 do \textit{softaware power monitor}. O sistema disponibiliza meios para uma fácil comunicação com qualquer \textit{hardware} de monitoramento
 de energia e uma interface que leva o usuário a ter um novo entendimento e uma nova conscientização sobre o gasto energético. Trazendo uma forma menos
-complicada de mensuarar a quantidade de energia elétrica utilizada em uma residência, possibilitando também uma boa e simples leitura de quanto tem se gastado.
+complicada de mensurar a quantidade de energia elétrica utilizada em uma residência, possibilitando também uma boa e simples leitura de quanto tem se gastado.
 
 O \textit{power monitor} foi pensado para ser uma solução simples e barata, onde qualquer pessoa que tenha os devidos conhecimentos possa 
 instalar, comunicar com \textit{hardwares} personalizados ou até mesmo modificar o código fonte. Como o \textit{software} foi desenvolvimento 
 para que todos possam usar e modificar, todo o código fonte está disponível na plataforma de hospedagem de código fonte chamada 
 \textit{GitHub} no seguinte endereço: \url{https://github.com/jonathanbraga/power-monitor}{}. A \autoref{custo-teste} mostra bem os 
-custos do dispositivo que foi utilizado para a demonstração da comunicação com o \textit{power monitor}.
+custos do dispositivo que foram utilizados para a demonstração da comunicação com o \textit{power monitor}.
 
 
 \begin{table}[!ht]
