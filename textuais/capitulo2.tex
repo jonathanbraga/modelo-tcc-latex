@@ -3,7 +3,7 @@
 O \textit{Power Monitor} surgiu da necessidade da conscientização do gasto energético e da melhor compreensão da conta de luz. Baseado nesse conceito,
 foi desenvolvido um \textit{software} que permite uma fácil comunicação com qualquer equipamento construído que tenha a finalidade de monitorar a energia elétrica e um \textit{hardware} para demonstração
 da comunicação entre ambos.
-O sistema traz uma forma mais fácil e próxima do consumidor final de se quantificar a energia elétrica consumido em um estabelecimento. No lugar do Quilowatt-hora, medida que é usada atualmente,
+O sistema traz uma forma mais fácil e próxima do consumidor final de se quantificar a energia elétrica consumida em um estabelecimento. No lugar do quilowatt-hora, medida que é usada atualmente,
 o \textit{software} propõe mensurar o gasto energético em reais (R\$), trazendo a realidade do consumo mensal para mais próximo de cada brasileiro.
 
 Esse capítulo trará os conceitos essenciais para o entendimento do trabalho, descrevendo todas as tecnologias utilizadas no desenvolvimento 
@@ -13,12 +13,12 @@ do \textit{software} como do \textit{hardware}.
 No decorrer do desenvolvimento do \textit{software} fez-se uso de algumas tecnologias e linguagens de programação que serão descrita no decorrer
 dessa seção.
 \subsection[\textit{Node.js}]{\textit{Node.js}}\label{node}
-Node.js é um interpretador do código JavaScript (\autoref{js}), com o foco do uso da linguagem do lado do cliente para servidores. Com um objetivo simples
-que é ajudar desenvolvedores na criação de aplicações de alta escalabilidade, com códigos capazes de administrar e manipulazar várias conexões simultaneamente
+Node.js é um \textit{framework}, interpretador do código JavaScript (\autoref{js}), com o foco do uso da linguagem do lado do cliente para servidores. Com um objetivo simples
+que é ajudar desenvolvedores na criação de aplicações de alta escalabilidade, com códigos capazes de administrar e manipular várias conexões simultaneamente
 em um único servidor. O \textit{Node.js} é baseado na \textit{runtime} V8 \textit{JavaScript Engine}. Foi desenvolvido por Ryan Danhl em 2009, e o seu desenvolvimento
 é mantido pela fundação \textit{Node.js} e \textit{Linux Foundation}. 
 \subsection[\textit{JavaScript}]{\textit{JavaScript}}\label{js}
-JavaScript é uma linguagem de programação interpretada de alto nível, juntamente com HTML e CSS é uma das linguagens mais utilizadads no mundo \textit{web}.
+JavaScript é uma linguagem de programação interpretada de alto nível, juntamente com HTML e CSS é uma das linguagens mais utilizadas no mundo \textit{web}.
 Após o uso da linguagem as páginas \textit{web} começaram a ter uma maior interatividade com o usuário. A grande maioria dos \textit{browsers} tem um
 mecanismo de compilação dedicado para o JavaScript. Por ser uma linguagem multi-paradigma o JavaScript suporta paradigmas funcionais, orientados a eventos 
 e até mesmo paradigmas de orientação a objeto.
@@ -27,11 +27,11 @@ servidores - como já foi discutido na \autoref{node} - \textit{databases} e at�
 vem ganhando espaço no desenvolvimento de aplicativos para celular.
 
 \subsection[\textit{WebSocket}]{\textit{WebSocket}}\label{websocket}
-A ideia da tecnologia surgiu da problematica onde as comunicações entre servidor e aplicação era baseada na sobrecarga do HTTP, que não é indicado para aplicativos
-com baixa latência. O WebSocket define uma API que estabelece a conexão de soquete entre aplicação e servidor, resumidamente é uma conexão, baseada no protocolo TCP, persistente
+A ideia da tecnologia surgiu da problemática onde as comunicações entre servidor e aplicação era baseada na sobrecarga do HTTP, que não é indicado para aplicativos
+com baixa latência. O WebSocket pode ser definido como uma API que estabelece a conexão de soquete entre aplicação e servidor, resumidamente é uma conexão, baseada no protocolo TCP, persistente
 entre servidor e cliente onde ambas as partes podem enviar ou receber informações a qualquer momento. A forma como a conexão acontece é bem simples,
 o cliente e o servidor antes de tudo devem negociar o \textit{handshake} - processo pelo qual os dois lados, geralmente cliente e servidor, passam para
-reconhcimento de ambos os lados e concretizar a comunicação - de atualização do HTTP e depois disso aplicar as regras assicronas do websocket, como mostra
+reconhecimento de ambos os lados e concretizar a comunicação - de atualização do HTTP e depois disso aplicar as regras assíncronas do websocket, como mostra
 a \autoref{fig:websocket-diagram}.
 
 \begin{figure}[h!]
@@ -47,11 +47,11 @@ a \autoref{fig:websocket-diagram}.
 \subsection[\textit{SQL}]{\textit{SQL}}\label{sql}
 A linguagem teve seu início dentro de um projeto chamado \textit{System R} que pertencia a IBM em meados dos anos 70. Structured Query Language, ou
 comumente conhecida como SQL é uma linguagem padrão de banco de dados, se tornou bastante conhecida e usada devido a sua simplicidade e facilidade 
-de uso. Diferentemente das outras linguagens de banco de dados a consulta em SQL especifica a forma do resultado e não o caminho para chegar nele, uma outra
-grande diferena é que a linguagem SQL é declarativa diferindo mais uma vez das outras linguagens que por sua vez são procedurais.
+de uso. Diferentemente das outras linguagens de banco de dados a consulta em SQL especifíca a forma do resultado e não o caminho para chegar nele, uma outra
+grande diferença é que a linguagem SQL é declarativa diferindo mais uma vez das outras linguagens que por sua vez são procedurais.
 
 O MySQL é um sistema de gerenciamento de banco de dados que utiliza a linguagem SQL. Atualmente é o sistema mais popular em gerenciamento de 
-banco de dados. Sua rápida popularização deve-se a fácil comuniação entre servidor e aplicação. 
+banco de dados. Sua rápida popularização deve-se a fácil comunicação entre servidor e aplicação. 
 
 \begin{figure}[h!]
 	\includegraphics[width=0.5\textwidth, keepaspectratio=true]{mysql}
@@ -71,7 +71,7 @@ e permite com que os desenvolvedores tenha uma visão tanto da protoboar, como d
 
 
 \section[\textit{Componentes Físicos}]{\textit{Componentes Físicos}}\label{comp-fisico}
-No decorrer do desenvolvimento do hardwaare fez-se uso de alguns componentes eletrônicos, microcontrolador que serão descritos nessa seção.
+No decorrer do desenvolvimento do \textit{hardware} fez-se uso de alguns componentes eletrônicos e microcontrolador que serão descritos nessa seção.
 \subsection[\textit{ESP8266}]{\textit{ESP8266}}\label{esp}
 É um microcontrolador que é produzido por um fabricante chinês - Espressif - que tem como principal vantagem a comunicação \textit{Wi-Fi} já integrada em seu circuito.
 O chip teve seu auge em 2014 quando "estourou" na cultura \textit{maker} com o ESP-01, essa placa permite que microcontroladores se conectem a uma rede
@@ -100,7 +100,7 @@ de circuitos já previamente embutido que o ESP8266 por si só não proporcionav
 \FloatBarrier
 
 \subsection[\textit{Sensor de Corrente SCT 013-000}]{\textit{Sensor de Corrente SCT 013-000}}\label{sct}
-O Sensor é um ótimo transformador de corrente para leituras não invasivas, possuindo um fucionamento bem similar a de um alicate amperímetro. Com a seguinte especificação
+O Sensor é um ótimo transformador de corrente para leituras não invasivas, possuindo um funcionamento bem similar a de um alicate amperímetro. Com a seguinte especificação
 técnica: 
 \begin{itemize}
 	\item 100A no primário
