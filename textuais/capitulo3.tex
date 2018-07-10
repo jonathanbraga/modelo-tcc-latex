@@ -4,7 +4,7 @@
 O \textit{software} pode ser dividido em duas partes, servidor \textit{web} e interface \textit{web}. O servidor foi desenvolvido usando a linguagem
 \textit{javascript} e para auxílio foi utilizado o \textit{framework node.js}, a comunicação entre servidor e banco de dados
 é feita pelo \textit{MySQL Server}. A interface \textit{web} é o agente consumidor de todos esses serviços. Com uma comunicação via 
-\textit{webscoket} o servidor é capaz de receber e enviar dados a todo instante. A combinação desses três serviços - servidor \textit{web},
+\textit{websocket} o servidor é capaz de receber e enviar dados a todo instante. A combinação desses três serviços - servidor \textit{web},
 servidor do banco de dados e interface \textit{web} - resultou em uma aplicação intuitiva e amigável, desenvolvida para dar suporte às análises dos dados
 enviados pelo \textit{hardware}. A \autoref{fig:banco-dados} representa o esquema das tabelas do banco de dados que foi utilizado no \textit{power monitor}. 
 
@@ -40,7 +40,7 @@ todos os dispositivos que possuem comunicação com a plataforma de prototipagem
 é possível ter um acompanhamento dos gastos.
 
 O sistema possui uma interface \textit{web} que pode ser acessada por meio de qualquer dispositivo com acesso a internet e possua um 
-\textit{browser}, como por exemplo: celulares, computadores, \textit{smart tv} etc. O \textit{software} possui uma interface de apenas um único usuário. 
+\textit{browser}, como por exemplo: celulares, computadores, \textit{smart tv} etc.
 Logo ao entrar no sistema o usuário se depara com a tela principal, conforme a \autoref{fig:principal-ft}, nela encontram-se
 as principais informações que o usuário irá precisar, como também as opções de cadastrar um novo dispositivo, listar os dispositivos, cadastrar um novo cômodo,
 listar um novo cômodo etc.
@@ -122,7 +122,7 @@ Uma vez que os cômodos, dispositivos e parâmetros são cadastrados no sistema 
 \begin{figure}[h!]
 	\includegraphics[width=1.0\textwidth, keepaspectratio=true]{c-dispositivo}
 	\centering
-	\caption[Cadastro de um dispositivo]{Cadastro de um dispositvio}
+	\caption[Cadastro de um dispositivo]{Cadastro de um dispositivo}
 	\label{fig:c-dispositivo} 
 \end{figure}
 \FloatBarrier
@@ -258,11 +258,10 @@ ligado, também vale destacar o uso do relé que é responsável por toda a lóg
 recebidos pelo sensor de corrente para o servidor \textit{web} que por sua vez, salva as medições aferidas no banco de dados. Com relação aos dados enviados 
 para o banco, foi feito um algoritmo que ao identificar um dispositivo ligado, afere a corrente elétrica presente no dispositivo e quando o mesmo é desligado 
 é aferido novamente a corrente elétrica. O resultado é multiplicado pelo valor da tensão
-e assim é obtido o consumo do dispositivo (em KWh). Após esse processo a informação é enviada via \textit{webscoket} 
+e assim é obtido o consumo do dispositivo (em KWh). Após esse processo a informação é enviada via \textit{websocket} 
 para o servidor \textit{web} que salva tudo no banco de dados, e por fim a informação é consumida pela interface \textit{web}.
 
-É válido lembrar que, para a comunicação \textit{websocket} é necessário o \textit{hardware} e o \textit{software} estarem conectados
-na mesma rede \textit{Wi-Fi}. O grande motivo para a escolha do NodeMCU como plataforma de prototipagem foi a sua fácil comunicação com uma rede
+O grande motivo para a escolha do NodeMCU como plataforma de prototipagem foi a sua fácil comunicação com uma rede
 \textit{Wi-Fi}. O código a seguir é um exemplo de como estabelecer a comunicação com uma rede sem fio.
 
 \newpage
